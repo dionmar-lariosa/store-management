@@ -1,0 +1,25 @@
+Category:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      example: Beverages
+
+CreateCategory:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      example: Beverages
+
+UpdateCategory:
+  type: object
+  properties:
+    name:
+      type: string
+      example: Soft Drinks

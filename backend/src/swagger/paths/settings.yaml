@@ -1,0 +1,51 @@
+/settings/auth:
+  post:
+    tags:
+      - Settings
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/setting.yaml#/Auth"
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/setting.yaml#/AccessToken"
+              
+/settings:
+  get:
+    tags:
+      - Settings
+    security:
+      - BearerAuth: []
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/setting.yaml#/Setting"
+
+  patch:
+    tags:
+      - Settings
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/setting.yaml#/UpdateSetting"
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/setting.yaml#/Setting"
+

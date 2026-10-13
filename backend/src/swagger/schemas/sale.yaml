@@ -1,0 +1,135 @@
+SaleSummary:
+  type: object
+
+  properties:
+    id:
+      type: integer
+
+    customer_name:
+      type: string
+      nullable: true
+
+    total:
+      type: string
+
+    payment_method:
+      type: string
+
+    status:
+      type: string
+
+    created_at:
+      type: string
+
+Sale:
+  type: object
+
+  properties:
+    id:
+      type: integer
+
+    customer_id:
+      type: integer
+      nullable: true
+
+    total:
+      type: string
+
+    payment_method:
+      type: string
+
+    status:
+      type: string
+
+    created_at:
+      type: string
+
+SaleItem:
+  type: object
+
+  properties:
+    id:
+      type: integer
+
+    sale_id:
+      type: integer
+
+    product_id:
+      type: integer
+
+    quantity:
+      type: integer
+
+    unit_price:
+      type: string
+
+    product_name:
+      type: string
+
+    unit:
+      type: string
+
+SaleDetails:
+  type: object
+
+  properties:
+    sale:
+      $ref: "#/Sale"
+
+    sale_items:
+      type: array
+
+      items:
+        $ref: "#/SaleItem"
+
+CreateSale:
+  type: object
+
+  required:
+    - payment_method
+    - status
+    - sale_items
+
+  properties:
+    customer_id:
+      type: integer
+      nullable: true
+      example: 1
+
+    payment_method:
+      type: string
+      example: CASH
+
+    status:
+      type: string
+      example: PAID
+
+    sale_items:
+      type: array
+
+      items:
+        type: object
+
+        required:
+          - product_id
+          - quantity
+
+        properties:
+          product_id:
+            type: integer
+            example: 1
+
+          quantity:
+            type: integer
+            example: 2
+
+VoidSale:
+  type: object
+
+  required:
+    - pin
+
+  properties:
+    pin:
+      type: string
+      example: "1234"

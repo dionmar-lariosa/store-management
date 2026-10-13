@@ -1,0 +1,31 @@
+CustomerPayment:
+  type: object
+  properties:
+    id:
+      type: integer
+    customer_id:
+      type: integer
+    amount:
+      type: string
+    note:
+      type: string
+      nullable: true
+    created_at:
+      type: string
+
+CreateCustomerPayment:
+  type: object
+  required:
+    - customer_id
+    - amount
+  properties:
+    customer_id:
+      type: integer
+      example: 1
+    amount:
+      type: string
+      example: "500.00"
+    note:
+      type: string
+      nullable: true
+      example: Partial payment

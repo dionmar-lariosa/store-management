@@ -1,0 +1,79 @@
+CustomerSummary:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    avatar_url:
+      type: string
+      nullable: true
+    phone_number:
+      type: string
+      nullable: true
+
+Customer:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    avatar_url:
+      type: string
+      nullable: true
+    phone_number:
+      type: string
+      nullable: true
+    created_at:
+      type: string
+    updated_at:
+      type: string
+
+CustomerDetails:
+  type: object
+  properties:
+    customer:
+      $ref: "#/Customer"
+    debts:
+      type: array
+      items:
+        type: object
+    payments:
+      type: array
+      items:
+        type: object
+    summary:
+      type: object
+
+CreateCustomer:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      example: John Doe
+    avatar_url:
+      type: string
+      nullable: true
+      example: https://example.com/avatar.jpg
+    phone_number:
+      type: string
+      nullable: true
+      example: "09171234567"
+
+UpdateCustomer:
+  type: object
+  properties:
+    name:
+      type: string
+      example: John Doe
+    avatar_url:
+      type: string
+      nullable: true
+      example: https://example.com/avatar.jpg
+    phone_number:
+      type: string
+      nullable: true
+      example: "09171234567"

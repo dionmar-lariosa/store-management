@@ -1,0 +1,125 @@
+/sales:
+  get:
+    tags:
+      - Sales
+
+    parameters:
+      - in: query
+        name: start_date
+
+        schema:
+          type: string
+          format: date
+
+      - in: query
+        name: end_date
+
+        schema:
+          type: string
+          format: date
+
+      - in: query
+        name: payment_method
+
+        schema:
+          type: string
+
+      - in: query
+        name: status
+
+        schema:
+          type: string
+
+      - in: query
+        name: order
+
+        schema:
+          type: string
+          enum:
+            - ASC
+            - DESC
+
+    responses:
+      "200":
+        description: OK
+
+        content:
+          application/json:
+            schema:
+              type: array
+
+              items:
+                $ref: "../schemas/sale.yaml#/SaleSummary"
+
+  post:
+    tags:
+      - Sales
+
+    requestBody:
+      required: true
+
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/sale.yaml#/CreateSale"
+
+    responses:
+      "201":
+        description: Created
+
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/sale.yaml#/Sale"
+
+/sales/{id}:
+  get:
+    tags:
+      - Sales
+
+    parameters:
+      - in: path
+        name: id
+        required: true
+
+        schema:
+          type: integer
+
+    responses:
+      "200":
+        description: OK
+
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/sale.yaml#/SaleDetails"
+
+  patch:
+    tags:
+      - Sales
+    summary: Voide Sale
+
+    parameters:
+      - in: path
+        name: id
+        required: true
+
+        schema:
+          type: integer
+
+    requestBody:
+      required: true
+
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/sale.yaml#/VoidSale"
+
+    responses:
+      "200":
+        description: OK
+
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/sale.yaml#/Sale"

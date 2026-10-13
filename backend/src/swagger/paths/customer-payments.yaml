@@ -1,0 +1,17 @@
+/customer-payments:
+  post:
+    tags:
+      - Customer Payments
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/customer-payment.yaml#/CreateCustomerPayment"
+    responses:
+      "201":
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/customer-payment.yaml#/CustomerPayment"

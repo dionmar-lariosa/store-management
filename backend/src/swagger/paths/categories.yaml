@@ -1,0 +1,71 @@
+/categories:
+  get:
+    tags:
+      - Categories
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/category.yaml#/Category"
+
+  post:
+    tags:
+      - Categories
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../schemas/category.yaml#/CreateCategory"
+    responses:
+      "201":
+        description: Created
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/category.yaml#/Category"
+
+/categories/{id}:
+  put:
+    tags:
+      - Categories
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/category.yaml#/UpdateCategory"
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/category.yaml#/Category"
+
+  delete:
+    tags:
+      - Categories
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    responses:
+      "204":
+        description: No Content

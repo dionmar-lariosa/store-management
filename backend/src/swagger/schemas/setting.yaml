@@ -1,0 +1,43 @@
+Setting:
+  type: object
+  properties:
+    theme:
+      type: string
+    is_dark:
+      type: boolean
+    created_at:
+      type: string
+    updated_at:
+      type: string
+
+Auth:
+  type: object
+  required:
+    - pin
+  properties:
+    pin:
+      type: string
+      example: "1234"
+
+AccessToken:
+  type: object
+  properties:
+    access_token:
+      type: string
+
+UpdateSetting:
+  type: object
+  properties:
+    pin:
+      type: string
+      example: "1234"
+    theme:
+      type: string
+      enum:
+        - default
+        - blue
+        - green
+        - purple
+        - red
+    is_dark:
+      type: boolean

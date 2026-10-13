@@ -1,0 +1,48 @@
+openapi: 3.0.3
+
+info:
+  title: Store Management API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/api
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+  /categories:
+    $ref: "./paths/categories.yaml#/~1categories"
+  /categories/{id}:
+    $ref: "./paths/categories.yaml#/~1categories~1{id}"
+
+  /products:
+    $ref: "./paths/products.yaml#/~1products"
+  /products/{id}:
+    $ref: "./paths/products.yaml#/~1products~1{id}"
+
+  /sales:
+    $ref: "./paths/sales.yaml#/~1sales"
+  /sales/{id}:
+    $ref: "./paths/sales.yaml#/~1sales~1{id}"
+
+  /customers:
+    $ref: "./paths/customers.yaml#/~1customers"
+  /customers/{id}:
+    $ref: "./paths/customers.yaml#/~1customers~1{id}"
+
+  /customer-debts:
+    $ref: "./paths/customer-debts.yaml#/~1customer-debts"
+
+  /customer-payments:
+    $ref: "./paths/customer-payments.yaml#/~1customer-payments"
+
+  /settings/auth:
+    $ref: "./paths/settings.yaml#/~1settings~1auth"
+
+  /settings:
+    $ref: "./paths/settings.yaml#/~1settings"

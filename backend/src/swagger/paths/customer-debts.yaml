@@ -1,0 +1,33 @@
+/customer-debts:
+  get:
+    tags:
+      - Customer Debts
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/customer-debt.yaml#/CustomerDebt"
+
+  post:
+    tags:
+      - Customer Debts
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/customer-debt.yaml#/CreateCustomerDebt"
+    responses:
+      "201":
+        description: Created
+        content:
+          application/json:
+            schema:
+              type: array
+
+              items:
+                $ref: "../schemas/customer-debt.yaml#/CustomerDebt"

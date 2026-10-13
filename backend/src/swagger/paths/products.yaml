@@ -1,0 +1,115 @@
+/products:
+  get:
+    tags:
+      - Products
+    parameters:
+      - in: query
+        name: product
+        schema:
+          type: string
+      - in: query
+        name: category
+        schema:
+          type: string
+      - in: query
+        name: is_active
+        schema:
+          type: boolean
+      - in: query
+        name: order
+        schema:
+          type: string
+          enum:
+            - ASC
+            - DESC
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/product.yaml#/Products"
+
+  post:
+    tags:
+      - Products
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/product.yaml#/CreateProduct"
+    responses:
+      "201":
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/product.yaml#/Product"
+
+/products/{id}:
+  get:
+    tags:
+      - Products
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/product.yaml#/Product"
+
+  put:
+    tags:
+      - Products
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/product.yaml#/UpdateProduct"
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/product.yaml#/Product"
+
+  patch:
+    tags:
+      - Products
+    summary: Soft Delete
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/product.yaml#/UpdateIsActive"
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/product.yaml#/ProductId"

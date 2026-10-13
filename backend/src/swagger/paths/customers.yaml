@@ -1,0 +1,84 @@
+/customers:
+  get:
+    tags:
+      - Customers
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../schemas/customer.yaml#/CustomerSummary"
+
+  post:
+    tags:
+      - Customers
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/customer.yaml#/CreateCustomer"
+    responses:
+      "201":
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/customer.yaml#/Customer"
+
+/customers/{id}:
+  get:
+    tags:
+      - Customers
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/customer.yaml#/CustomerDetails"
+
+  put:
+    tags:
+      - Customers
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/customer.yaml#/UpdateCustomer"
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../schemas/customer.yaml#/Customer"
+
+  delete:
+    tags:
+      - Customers
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    responses:
+      "204":
+        description: No Content
